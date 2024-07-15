@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'client/css/client_css.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Liste des Clients</title>
+</head>
+<body>
+  	<div class="page-liste ">
+     
+            <h5>Tout les Client </h5>
+            <hr>
+            <div class="card card-body">
+            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'ajout_client' %}" >Ajouter un Client</a>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Adresse</th>
+                    <th>Date de Création</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clients %}
+                <tr>
+                    <td>{{ client.nom }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.telephone }}</td>
+                    <td>{{ client.adresse }}</td>
+                    <td>{{ client.date_creation }}</td>
+                    <td>
+                        <a href="{% url 'modifier_client' client.id %}" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="{% url 'supprimer_client' client.id %}" class="btn btn-danger btn-sm">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

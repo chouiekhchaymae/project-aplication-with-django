@@ -1,0 +1,31 @@
+{% extends 'main.html'%}
+{% block content %}
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Produit</th>
+					<th>Date de Commande</th>
+					<th>Status</th>
+					<th>Mise à Jour</th>
+					<th>Supprimer</th>
+				</tr>
+				{%  for commande in commande %}
+				<tr>
+					<th>{{commande.produit}}</th>
+					<th>{{commande.date_creation}}</th>
+					<th>{{commande.status}}</th>
+					<th><a href="{% url 'modifier_commande' commande.id %}"> Mise à Jour</a></th>
+					<th><a href="{% url 'supprimer_commande' commande.id %}"> Supprimer</a></th>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock content%}

@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'client/css/client_css.css' %}">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Liste des Produits</title>
+</head>
+<body>
+  
+		
+    <div class="page-liste ">
+            <h5>Tout les produits </h5>
+            <hr>
+            <div class="card card-body">
+            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'product_add' %}" >Ajouter un Produit</a>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Date de Création</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.nom }}</td>
+                    <td>{{ product.prix }}</td>
+                    <td>{{ product.date_creation }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>
+                        <a href="{% url 'product_edit' product.pk %}" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="{% url 'product_delete' product.pk %}" class="btn btn-danger btn-sm">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

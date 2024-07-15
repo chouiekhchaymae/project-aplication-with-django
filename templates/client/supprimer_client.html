@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supprimer Client</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Supprimer Client</h1>
+        <p>Êtes-vous sûr de vouloir supprimer le client "{{ client.nom }}" ?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+            <a href="{% url 'client_list' %}" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock content%}
